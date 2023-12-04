@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import StepBar from '../components/StepBar';
 import Title from '../components/Title';
 import QuestionText from '../components/QuestionText';
@@ -9,6 +10,16 @@ import Button from '../components/Button';
 import 'bulma/css/bulma.css';
 
 function questionPage() {
+  const router = useRouter();
+
+  const handleNextClick = () => {
+    router.push('./consultationPage');
+  };
+
+  const handleBackClick = () => {
+    router.back();
+  };
+
   const [option1, setOption1] = useState('');
   const [option2, setOption2] = useState('');
   const [option3, setOption3] = useState('');
@@ -74,8 +85,8 @@ function questionPage() {
       )}
 
       <div className="text-center">
-        <Button text="次へ進む" destination="./consultationPage" />
-        <Button text="前へ戻る" destination="./" />
+        <Button text="次へ進む" onClick={handleNextClick} />
+        <Button text="前へ戻る" onClick={handleBackClick} />
       </div>
     </div>
   );

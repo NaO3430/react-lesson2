@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import StepBar from '../components/StepBar';
 import Title from '../components/Title';
 import Button from '../components/Button';
@@ -8,7 +9,14 @@ import TextArea from '../components/TextArea';
 import 'bulma/css/bulma.css';
 
 function consultationPage() {
+  const router = useRouter();
+
+  const handleBackClick = () => {
+    router.back();
+  };
+
   const [text, setText] = useState('');
+
   return (
     <div className="flex flex-col justify-center h-screen mx-auto max-w-xl space-y-4">
       <div className="flex">
@@ -22,7 +30,7 @@ function consultationPage() {
 
       <div className="text-center">
         <Button text="次へ進む" />
-        <Button text="前へ戻る" destination="./questionPage" />
+        <Button text="前へ戻る" onClick={handleBackClick} />
       </div>
     </div>
   );

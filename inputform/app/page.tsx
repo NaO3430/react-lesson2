@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import './globals.css';
 import StepBar from './components/StepBar';
 import Title from './components/Title';
@@ -10,6 +11,12 @@ import { GenderStatus } from './components/types';
 import 'bulma/css/bulma.css';
 
 function YourPageComponent() {
+  const router = useRouter();
+
+  const handleNextClick = () => {
+    router.push('/questionPage');
+  };
+
   const [selectedGender, setSelectedGender] = useState<GenderStatus | null>(
     null
   );
@@ -45,7 +52,7 @@ function YourPageComponent() {
         onDayChange={setSelectedDay}
       />
       <div className="text-center">
-        <Button text="次に進む" destination="/questionPage" />
+        <Button text="次に進む" onClick={handleNextClick} />
       </div>
     </div>
   );

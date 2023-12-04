@@ -1,19 +1,13 @@
 import React from 'react';
-import { useRouter } from 'next/navigation';
 
 type ButtonProps = {
   text: string;
-  destination: string;
+  onClick: () => void;
 };
 
-const Button: React.FC<ButtonProps> = ({ text, destination }) => {
-  const router = useRouter();
-
-  const handleClick = () => {
-    router.push(destination);
-  };
+const Button: React.FC<ButtonProps> = ({ text, onClick }) => {
   return (
-    <button className="button is-primary" onClick={handleClick}>
+    <button className="button is-primary" onClick={onClick}>
       {text}
     </button>
   );
