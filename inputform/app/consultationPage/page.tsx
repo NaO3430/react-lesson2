@@ -11,7 +11,15 @@ import 'bulma/css/bulma.css';
 function consultationPage() {
   const router = useRouter();
 
-  const handleBackClick = () => {
+  const navigateToResultPage = () => {
+    const currentParams = new URLSearchParams(window.location.search);
+
+    currentParams.set('consultationText', text);
+
+    router.push(`/resultPage?${currentParams.toString()}`);
+  };
+
+  const navigateBack = () => {
     router.back();
   };
 
@@ -29,8 +37,8 @@ function consultationPage() {
       </div>
 
       <div className="text-center">
-        <Button text="次へ進む" />
-        <Button text="前へ戻る" onClick={handleBackClick} />
+        <Button text="次へ進む" onClick={navigateToResultPage} />
+        <Button text="前へ戻る" onClick={navigateBack} />
       </div>
     </div>
   );
