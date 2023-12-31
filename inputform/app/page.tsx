@@ -1,7 +1,6 @@
 'use client';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-// import { useSearchParams } from 'next/navigation';
 import './globals.css';
 import StepBar from './components/StepBar';
 import Title from './components/Title';
@@ -14,27 +13,30 @@ import 'bulma/css/bulma.css';
 function YourPageComponent() {
   const router = useRouter();
 
-  const [selectedGender, setSelectedGender] = useState<GenderStatus | null>(
-    null
-  );
+  const [selectedGender, setSelectedGender] = useState<
+    GenderStatus | undefined
+  >(undefined);
+
   const [selectedYear, setSelectedYear] = useState(1990);
   const [selectedMonth, setSelectedMonth] = useState(1);
   const [selectedDay, setSelectedDay] = useState(1);
 
   const navigateToQuestionPage = () => {
-    const queryParams = new URLSearchParams({
-      gender: selectedGender ?? '',
-      year: selectedYear.toString(),
-      month: selectedMonth.toString(),
-      day: selectedDay.toString(),
-    }).toString();
+    const queryParams = new URLSearchParams();
 
-    router.push(`/questionPage?${queryParams}`);
+    if (selectedGender !== undefined) {
+      queryParams.set('gender', selectedGender);
+    }
+    queryParams.set('year', selectedYear.toString());
+    queryParams.set('month', selectedMonth.toString());
+    queryParams.set('day', selectedDay.toString());
+
+    router.push(`/questionPage?${queryParams.toString()}`);
   };
 
   const genderOptions = [
-    { value: '男性', label: '男性' },
-    { value: '女性', label: '女性' },
+    { value: 'men', label: '男性' },
+    { value: 'women', label: '女性' },
   ];
 
   return (

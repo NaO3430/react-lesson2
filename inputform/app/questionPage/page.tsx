@@ -56,8 +56,8 @@ function questionPage() {
         <QuestionText text="現在、生命保険に加入されていますか？" />
         <RadioButton
           options={[
-            { value: 'はい', label: 'はい' },
-            { value: 'いいえ', label: 'いいえ' },
+            { value: 'yes', label: 'はい' },
+            { value: 'no', label: 'いいえ' },
           ]}
           selectedValue={option1}
           onChange={handleOption1Change}
@@ -68,8 +68,8 @@ function questionPage() {
           <QuestionText text="現在入院中ですか、または最近３ヶ月以内に医師の診療・検査の結果、入院・手術をすすめられたことはありますか？" />
           <RadioButton
             options={[
-              { value: 'はい', label: 'はい' },
-              { value: 'いいえ', label: 'いいえ' },
+              { value: 'yes', label: 'はい' },
+              { value: 'no', label: 'いいえ' },
             ]}
             selectedValue={option2}
             onChange={handleOption2Change}
@@ -81,8 +81,8 @@ function questionPage() {
           <QuestionText text="過去5年以内に、病気やけがで、手術を受けたことまたは継続して7日以上の入院をしたことがありますか？" />
           <RadioButton
             options={[
-              { value: 'はい', label: 'はい' },
-              { value: 'いいえ', label: 'いいえ' },
+              { value: 'yes', label: 'はい' },
+              { value: 'no', label: 'いいえ' },
             ]}
             selectedValue={option3}
             onChange={handleOption3Change}
