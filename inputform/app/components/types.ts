@@ -1,1 +1,1 @@
-export type GenderStatus = 'boy' | 'girl' | null;
+export type GenderStatus = 'men' | 'women';

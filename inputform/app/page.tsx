@@ -13,21 +13,31 @@ import 'bulma/css/bulma.css';
 function YourPageComponent() {
   const router = useRouter();
 
-  const handleNextClick = () => {
-    router.push('/questionPage');
-  };
-
-  const [selectedGender, setSelectedGender] = useState<GenderStatus | null>(
-    null
-  );
-  const genderOptions = [
-    { value: 'boy', label: '男性' },
-    { value: 'girl', label: '女性' },
-  ];
+  const [selectedGender, setSelectedGender] = useState<
+    GenderStatus | undefined
+  >(undefined);
 
   const [selectedYear, setSelectedYear] = useState(1990);
   const [selectedMonth, setSelectedMonth] = useState(1);
   const [selectedDay, setSelectedDay] = useState(1);
+
+  const navigateToQuestionPage = () => {
+    const queryParams = new URLSearchParams();
+
+    if (selectedGender !== undefined) {
+      queryParams.set('gender', selectedGender);
+    }
+    queryParams.set('year', selectedYear.toString());
+    queryParams.set('month', selectedMonth.toString());
+    queryParams.set('day', selectedDay.toString());
+
+    router.push(`/questionPage?${queryParams.toString()}`);
+  };
+
+  const genderOptions = [
+    { value: 'men', label: '男性' },
+    { value: 'women', label: '女性' },
+  ];
 
   return (
     <div className="flex flex-col justify-center h-screen mx-auto max-w-xl  space-y-4">
@@ -52,7 +62,7 @@ function YourPageComponent() {
         onDayChange={setSelectedDay}
       />
       <div className="text-center">
-        <Button text="次に進む" onClick={handleNextClick} />
+        <Button text="次に進む" onClick={navigateToQuestionPage} />
       </div>
     </div>
   );
